@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Hex Color COde Genarator</title>
+	<style type="text/css">
+		html{
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100vh;
+			background: #e63c44;
+			color: #fff;
+			text-align: center;
+		}
+		h1 {
+			padding-top: 300px;
+			font-size: 50px;
+			font-family: Source Code Pro,sans-serif;
+			font-weight: bold;
+		}
+		button#change {
+			display: block;
+			margin: 0 auto;
+			width: 180px;
+			height: 60px;
+			background: #fff;
+			color: #E63C44;
+			font-family: Source Code Pro,sans-serif;
+			font-weight: bold;
+			font-size: 20px;
+			border: 0;
+		}
+		*:focus {
+			outline: none;
+		}
+		body, button#change {
+			transition: all 0.4s ease-in-out;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>Color code: <span id="colour">#E63C44</span></h1>
+		<button id="change" type="button">New Colour</button>
+	</div>
+
+<script>
+	let btn = document.getElementById('change');
+	let text = document.getElementById('colour');
+
+	let generator = function() {
+		newColour = '#' +
+		  (Math.random()*0xFFFFFF<<0).toString(16);
+
+		if (newColour.length < 7) {
+			generator();
+		}
+	};
+	btn.addEventListener('click', function() {
+		generator();
+
+		document.body.style.background = newColour;
+		btn.style.color = newColour;
+		text.innerText = newColour;
+	})
+</script>
+
+</body>
+</html>
